@@ -908,5 +908,13 @@
             });
         });
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://primary-production-d90f.up.railway.app/webhook/a9a36058-ee75-4d6a-a3d7-433e252e8b50/chat'
+	});
+</script>
 </body>
 </html>
