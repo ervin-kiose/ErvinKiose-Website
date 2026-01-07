@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Ervin Kiose - Computer Science Graduate</title>
     <style>
         * {
@@ -30,6 +33,8 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: rgba(6, 182, 212, 0.2);
+            touch-action: manipulation;
         }
 
         /* Header & Navigation */
@@ -463,6 +468,9 @@
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
+                padding: 0.5rem;
+                min-width: 44px;
+                min-height: 44px;
             }
 
             .nav-links {
@@ -488,23 +496,38 @@
 
             .nav-links a {
                 display: block;
+                padding: 0.5rem 0;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Disable animated background on mobile for better performance */
+            #home::before {
+                animation: none;
+                opacity: 0.5;
             }
 
             section {
-                padding: 3rem 1rem;
+                padding: 2.5rem 1.5rem;
                 min-height: auto;
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
             }
 
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
             }
 
             .about-content {
@@ -532,11 +555,53 @@
 
             .cta-buttons {
                 width: 100%;
+                flex-direction: column;
             }
 
             .btn {
-                flex: 1;
+                width: 100%;
                 text-align: center;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Smaller contact icons on mobile */
+            .contact-icon svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            /* Better spacing for mobile */
+            .hero-description {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .project-card,
+            .experience-item,
+            .contact-item {
+                padding: 1.5rem;
+            }
+
+            /* Improve tap targets */
+            .tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+                margin: 0.3rem 0.2rem;
+            }
+
+            /* Logo touch target */
+            .logo {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            /* Optimize metrics display on mobile */
+            #home > div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: 1rem !important;
             }
         }
 
@@ -1010,6 +1075,41 @@
             });
         });
 
+        // Swipe gesture support for mobile navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 100;
+            const diff = touchStartX - touchEndX;
+
+            // Swipe left to close menu
+            if (diff > swipeThreshold && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+            
+            // Swipe right to open menu (only from left edge)
+            if (diff < -swipeThreshold && touchStartX < 50 && !navLinks.classList.contains('active')) {
+                navLinks.classList.add('active');
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1023,6 +1123,17 @@
                 }
             });
         });
+
+        // Optimize animations for mobile
+        if (window.innerWidth <= 768) {
+            // Reduce motion for better performance
+            document.querySelectorAll('*').forEach(el => {
+                const computedStyle = window.getComputedStyle(el);
+                if (computedStyle.animation !== 'none') {
+                    el.style.animation = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
