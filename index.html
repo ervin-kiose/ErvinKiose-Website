@@ -266,13 +266,13 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
         }
 
         main {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
 
@@ -1541,10 +1541,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
+                this.size = Math.random() * 3 + 1.5;
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.3;
+                this.opacity = Math.random() * 0.4 + 0.6; // Higher opacity: 0.6 to 1.0
             }
 
             update() {
@@ -1559,10 +1559,14 @@
             }
 
             draw() {
+                // Add glow effect
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `rgba(6, 182, 212, ${this.opacity})`;
                 ctx.fillStyle = `rgba(6, 182, 212, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
+                ctx.shadowBlur = 0; // Reset shadow
             }
         }
 
@@ -1584,9 +1588,9 @@
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < 120) {
-                        const opacity = (1 - distance / 120) * 0.3;
+                        const opacity = (1 - distance / 120) * 0.5; // Increased from 0.3 to 0.5
                         ctx.strokeStyle = `rgba(6, 182, 212, ${opacity})`;
-                        ctx.lineWidth = 1;
+                        ctx.lineWidth = 1.5; // Slightly thicker lines
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                         ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
