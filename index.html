@@ -236,17 +236,18 @@
         h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
-            color: var(--text-primary);
-            background: linear-gradient(90deg, var(--accent), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--cyan);
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.8),
+                         0 0 40px rgba(6, 182, 212, 0.6),
+                         0 0 60px rgba(6, 182, 212, 0.4);
         }
 
         h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--text-primary);
+            color: var(--cyan);
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.6),
+                         0 0 30px rgba(6, 182, 212, 0.4);
         }
 
         /* Hero Section */
@@ -304,8 +305,11 @@
 
         .hero-subtitle {
             font-size: 1.5rem;
-            color: var(--text-secondary);
+            color: var(--cyan);
             margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.8),
+                         0 0 40px rgba(6, 182, 212, 0.6),
+                         0 0 60px rgba(6, 182, 212, 0.4);
         }
 
         .hero-description {
@@ -392,7 +396,9 @@
             padding: 1rem;
             border-radius: 8px;
             border: 1px solid var(--border);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .skill-item:nth-child(even) {
@@ -400,8 +406,14 @@
         }
 
         .skill-item:hover {
-            border-color: var(--accent);
-            box-shadow: 0 3px 15px rgba(59, 130, 246, 0.15);
+            border-color: var(--cyan);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+        }
+
+        .skill-item strong {
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
 
         /* Experience Section */
@@ -412,13 +424,16 @@
             border: 1px solid var(--border);
             border-left: 3px solid transparent;
             margin-bottom: 2rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .experience-item:hover {
             border-color: var(--cyan);
             border-left-color: var(--cyan);
-            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.15);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
+            transform: translateY(-10px) rotateX(3deg) rotateY(3deg);
         }
 
         .experience-header {
@@ -432,7 +447,8 @@
 
         .experience-title {
             font-size: 1.3rem;
-            color: var(--accent);
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
 
         .experience-date {
@@ -451,6 +467,8 @@
             color: var(--cyan);
             margin-top: 3rem;
             margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.6),
+                         0 0 30px rgba(6, 182, 212, 0.4);
         }
 
         .projects-grid {
@@ -485,13 +503,20 @@
             padding: 2rem;
             border-radius: 12px;
             border: 1px solid var(--border);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .project-card:hover {
             border-color: var(--cyan);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
+        }
+
+        .project-card h3 {
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
 
         .project-badge {
@@ -538,7 +563,9 @@
             border-radius: 12px;
             border: 1px solid var(--border);
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .contact-item:nth-child(odd) {
@@ -547,8 +574,13 @@
 
         .contact-item:hover {
             border-color: var(--cyan);
-            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.15);
-            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+        }
+
+        .contact-item h3 {
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
 
         .contact-icon {
