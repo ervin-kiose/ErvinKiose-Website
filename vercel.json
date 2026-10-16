@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/tpe", "destination": "https://teaching-ict.vercel.app/", "permanent": false },
+    { "source": "/tpe/:path*", "destination": "https://teaching-ict.vercel.app/:path*", "permanent": false }
+  ]
+}
